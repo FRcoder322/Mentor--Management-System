@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mms_project/Mentors/Onboarding/alert_dialog.dart';
 
 class Registration extends StatelessWidget {
   const Registration({Key? key});
@@ -48,6 +49,7 @@ class RegistrationContent extends StatelessWidget {
               hintText: "Enter your FirstName",
             ),
           ),
+
           SizedBox(height: 14),
           Text("Last name"),
           TextField(
@@ -67,6 +69,7 @@ class RegistrationContent extends StatelessWidget {
           SizedBox(height: 14),
           Text("Password"),
           TextField(
+            obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Enter your password",
@@ -75,6 +78,7 @@ class RegistrationContent extends StatelessWidget {
           SizedBox(height: 14),
           Text("Confirm Password"),
           TextField(
+            obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'confirm your password',
@@ -82,14 +86,53 @@ class RegistrationContent extends StatelessWidget {
           ),
           SizedBox(height: 14),
           TextButton(
-
             onPressed: () {
-              // Handle registration logic
+              // Show the custom AlertDialog
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomAlertDialog(); // Use the custom AlertDialog widget here
+                },
+              );
             },
-            child: Text("Register", style: TextStyle(fontSize: 16,),),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                const Color.fromARGB(255, 216, 176, 224),
+              ),
+            ),
+            child: Text(
+              "Register",
+              style: TextStyle(fontSize: 16),
+            ),
           ),
+          SizedBox(height: 20,),
+          Text("..........................................OR........"
+              "....................................",),
+
+          SizedBox(height: 30,),
+          TextButton(
+            onPressed: (){
+
+            },
+            style: OutlinedButton.styleFrom(
+                side: BorderSide(color: Colors.grey)
+            ),
+            child: Text("Sign Up with Google"),
+          ),
+          SizedBox(height: 16,),
+          Row(
+            children: [
+              Text("Already have an account ?"),
+              TextButton(onPressed: (){
+
+              }, child: Text("Login")),
+            ],
+          )
         ],
       ),
     );
   }
 }
+
+
+
