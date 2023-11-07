@@ -12,6 +12,7 @@ class ProgramProfile extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 100,
           backgroundColor: Color.fromARGB(255, 161, 139, 164),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -71,7 +72,7 @@ class _ProfileContentState extends State<ProfileContent> {
         padding: EdgeInsets.all(20),
         children: [
           SizedBox(height: 16),
-          Text("Become a Mentor", style: TextStyle(fontWeight: FontWeight.bold)),
+          Text("Become a Mentor", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
           SizedBox(height: 16),
           Text("Fill in the form Below"),
           SizedBox(height: 16),
@@ -161,7 +162,8 @@ class _ProfileContentState extends State<ProfileContent> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProgramInterest()) );
 
            },
-              child: Text("Next"))
+              child: Text("Next"),),
+
 
 
         ],

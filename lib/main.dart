@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mms_project/Mentors/Onboarding/mentor_onboard.dart';
 
+
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
   home: SplashScreen(),
@@ -12,7 +13,7 @@ class SplashScreen extends StatelessWidget {
     Future.delayed(const Duration(milliseconds: 3000), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const MentorOnboard(),
+          builder: (context) => MentorOnboard(),
         ),
       );
     });
@@ -24,11 +25,23 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Mentor Management System',
-              style: TextStyle(
-                color: Color.fromARGB(255, 23, 22, 23),
-                fontSize: 24.0,
+            Image.asset(
+              'images/splash2.png',
+              width: 100.0,
+              height: 100.0,
+            ),
+
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: TextStyle(
+                  color: Color.fromARGB(255, 23, 22, 23),
+                  fontSize: 30.0,
+                ),
+                children: [
+                  TextSpan(text: 'Mentor Management\n'),
+                  TextSpan(text: 'System'),
+                ],
               ),
             ),
           ],

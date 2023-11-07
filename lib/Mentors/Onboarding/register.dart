@@ -10,6 +10,7 @@ class Registration extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 100,
           backgroundColor: Color.fromARGB(255, 161, 139, 164),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -87,7 +88,6 @@ class RegistrationContent extends StatelessWidget {
           SizedBox(height: 14),
           TextButton(
             onPressed: () {
-              // Show the custom AlertDialog
               showDialog(
                 context: context,
                 builder: (BuildContext context) {

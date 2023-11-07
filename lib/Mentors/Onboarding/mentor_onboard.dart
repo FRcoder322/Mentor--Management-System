@@ -10,9 +10,11 @@ class MentorOnboard extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 100,
           backgroundColor: Color.fromARGB(255, 161, 139, 164),
           title: const Text('Mentor Management System'),
         ),
+
         body: const Center(
           child: MentorOnboardContent(),
         ),
@@ -34,7 +36,7 @@ class MentorOnboardContent extends StatelessWidget {
           Container(
               width: 300,
               height: 200,
-              child: Image.asset('assets/images/mentor.png')),
+              child: Image.asset('images/MMS.png')),
           const SizedBox(
             height: 16,
           ),
