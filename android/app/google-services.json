@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "32759376115",
+    "project_id": "mmsproject-cb700",
+    "storage_bucket": "mmsproject-cb700.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32759376115:android:e8ce1a734dcb9de86cef86",
+        "android_client_info": {
+          "package_name": "com.example.mms_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkaXSj2Nqr4qYFHa3B0rExemQ5OeuQSmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

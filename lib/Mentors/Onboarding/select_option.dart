@@ -12,6 +12,7 @@ class SelectOption extends StatelessWidget {
       home: Scaffold(
         backgroundColor: const Color.fromARGB(187, 252, 248, 252),
         appBar: AppBar(
+          toolbarHeight: 100,
           backgroundColor: Color.fromARGB(255, 161, 139, 164),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),

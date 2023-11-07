@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mms_project/Mentors/Onboarding/technical_proficiency.dart';
 
 class ProgramInterest extends StatelessWidget {
   const ProgramInterest({Key? key});
@@ -9,6 +10,7 @@ class ProgramInterest extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 100,
           backgroundColor: Color.fromARGB(255, 161, 139, 164),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -38,14 +40,14 @@ class ProgramInterestContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16),
+            SizedBox(height: 10),
             Text(
               "Become a mentor",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),
             ),
             SizedBox(height: 10),
             Text("Fill in the form below"),
-            SizedBox(height: 30),
+            SizedBox(height:25),
             Text("Program of Interest ?"),
             TextField(
               decoration: InputDecoration(
@@ -53,7 +55,7 @@ class ProgramInterestContent extends StatelessWidget {
                 hintText: "FullStack Development",
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Text("Years of experience"),
             TextField(
               decoration: InputDecoration(
@@ -61,17 +63,18 @@ class ProgramInterestContent extends StatelessWidget {
                 hintText: "e.g 3 years",
               ),
             ),
-            SizedBox(height: 65),
+            SizedBox(height: 45),
             Text("Been a mentor before? "),
             SizedBox(height: 10),
             Row(
               children: [],
             ),
-            SizedBox(height: 200),
+            SizedBox(height: 80),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => TechnicalProficiency()));
 
                 },
                 child: Text("Next"),

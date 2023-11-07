@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAN9nXDWB0dCYrw-oHimYCLcrV3p4u12VU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>32759376115</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.mmsProject.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>mmsproject-cb700</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mmsproject-cb700.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:32759376115:ios:7d27c73dcbdc52e56cef86</string>
+</dict>
+</plist>
