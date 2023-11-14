@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mms_project/Mentors/Onboarding/alert_dialog.dart';
+import 'package:mms_project/Model/mentor.dart';
 
 class Registration extends StatelessWidget {
   const Registration({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    // List<MentorModel> mentor=[
+    // MentorModel(
+    //   name: 'Sandy',
+    //   password: 'chepngeno322',
+    //   email: 'nenorotich@gmail.com',
+    //
+    // ),
+    //
+    // ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -97,19 +107,19 @@ class RegistrationContent extends StatelessWidget {
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                const Color.fromARGB(255, 216, 176, 224),
+                const Color.fromARGB(255, 0, 180, 180),
               ),
             ),
-            child: Text(
+            child: const Text(
               "Register",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16,color: Colors.white),
             ),
           ),
-          SizedBox(height: 20,),
-          Text("..........................................OR........"
-              "....................................",),
+          const SizedBox(height: 20,),
+          const Text(".............................OR."
+              "................................",),
 
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
           TextButton(
             onPressed: (){
 
@@ -125,7 +135,7 @@ class RegistrationContent extends StatelessWidget {
               Text("Already have an account ?"),
               TextButton(onPressed: (){
 
-              }, child: Text("Login")),
+              }, child: Text("Login",style: TextStyle(color: Colors.black26),)),
             ],
           )
         ],

@@ -11,7 +11,7 @@ class MentorOnboard extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           title: const Text('Mentor Management System'),
         ),
 
@@ -53,7 +53,7 @@ class MentorOnboardContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           const SizedBox(
@@ -73,7 +73,7 @@ class MentorOnboardContent extends StatelessWidget {
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color.fromARGB(255, 161, 139, 164)),
+                    const Color.fromARGB(255, 0, 180, 180)),
               ),
               child:
               const Text('Register', style: TextStyle(color: Colors.black)),

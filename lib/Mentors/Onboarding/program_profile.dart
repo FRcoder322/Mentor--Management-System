@@ -13,16 +13,16 @@ class ProgramProfile extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text("Mentor"),
+          title: const Text("Mentor"),
         ),
-        body: Center(
+        body: const Center(
           child: ProfileContent(),
         ),
       ),
@@ -69,15 +69,15 @@ class _ProfileContentState extends State<ProfileContent> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(136, 252, 248, 252),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         children: [
-          SizedBox(height: 16),
-          Text("Become a Mentor", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
-          SizedBox(height: 16),
-          Text("Fill in the form Below"),
-          SizedBox(height: 16),
-          Text("Set program Avatar"),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
+          const Text("Become a Mentor", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+          const SizedBox(height: 16),
+          const Text("Fill in the form Below"),
+          const SizedBox(height: 16),
+          const Text("Set program Avatar"),
+          const SizedBox(height: 16),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -90,29 +90,39 @@ class _ProfileContentState extends State<ProfileContent> {
                     backgroundColor: Colors.grey,
                     backgroundImage: pickedImageFile != null
                         ? Image.file(pickedImageFile!).image
-                        : AssetImage('assets/default_profile_picture.png'),
+                        : const AssetImage('assets/default_profile_picture.png'),
                   ),
                   if (isLoading)
-                    CircularProgressIndicator(
+                    const CircularProgressIndicator(
                       strokeWidth: 3,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                      valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 0, 180, 180)),
                     ),
                 ],
               ),
-              SizedBox(height: 20,width: 10,),
-              ElevatedButton(
-                onPressed: _pickImage,
-                child: Text('Pick Profile Picture'),
+              const SizedBox(height: 20,width: 10,),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: _pickImage,
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 180, 180)),
+
+
+                  ),
+                    child: const Text('Pick Profile Picture'),
+                  ),
+                ],
               ),
+
               SizedBox(height: 20,width: 10,),
               TextButton(onPressed: (){
 
-              }, child: Text("Remove")),
+              }, child: const Text("Remove",style: TextStyle(color: Colors.black),)),
             ],
           ),
-          SizedBox(height: 16,),
-          Text('First name'),
-          TextField(
+          const SizedBox(height: 16,),
+          const Text('First name'),
+          const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Sunrise",
@@ -120,26 +130,26 @@ class _ProfileContentState extends State<ProfileContent> {
             ),
 
           ),
-          SizedBox(height: 16,),
-          Text("Last name"),
-          TextField(
+          const SizedBox(height: 16,),
+          const Text("Last name"),
+          const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Jay",
             ),
           ),
-          SizedBox(height: 16,),
-          Text("Bio"),
-          TextField(
+          const SizedBox(height: 16,),
+          const Text("Bio"),
+          const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'Tell us about yourself',
                 contentPadding: EdgeInsets.symmetric(vertical: 50.0),
             ),
           ),
-        SizedBox(height: 16,),
-        Text("Country"),
-        TextField(
+        const SizedBox(height: 16,),
+        const Text("Country"),
+        const TextField(
           decoration: InputDecoration(
           border: OutlineInputBorder(),
             hintText: "Select a country",
@@ -148,24 +158,28 @@ class _ProfileContentState extends State<ProfileContent> {
 
 
         ),
-          SizedBox(height: 16,),
-          Text("City"),
-          TextField(
+          const SizedBox(height: 16,),
+          const Text("City"),
+          const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Select a city",
             ),
           ),
 
-          SizedBox(height: 16,),
+          const SizedBox(height: 16,),
           ElevatedButton(onPressed: (){
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProgramInterest()) );
 
            },
-              child: Text("Next"),),
+              child: const Text("Next"),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 180, 180)),
+
+          ),
 
 
-
+          ),
         ],
       ),
     );

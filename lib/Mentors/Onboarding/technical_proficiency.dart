@@ -11,7 +11,7 @@ class TechnicalProficiency extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
@@ -34,15 +34,14 @@ class SelectableCard extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(136, 252, 248, 252),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
           children: [
-            Text("Become a mentor",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),
-            SizedBox(height: 10,),
-            Text("Fill in the form below"),
+            const Text("Become a mentor",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),
+            const SizedBox(height: 10,),
+            const Text("Fill in the form below"),
             SizedBox(height: 30,),
-              Text("Technical Proficiency",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+              const Text("Technical Proficiency",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
             SizedBox(height: 10,),
 
             Row(
@@ -143,7 +142,7 @@ class _CardWidgetState extends State<CardWidget> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: isSelected ? Colors.purpleAccent : Colors.white,
+            color: isSelected ? const Color.fromARGB(255, 161, 139, 164) : const Color.fromARGB(136, 252, 248, 252),
           ),
           child: Padding(
             padding: EdgeInsets.all(10.0),

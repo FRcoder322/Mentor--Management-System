@@ -3,11 +3,13 @@ import 'package:mms_project/Mentors/Onboarding/program_profile.dart';
 import 'package:mms_project/Mentors/Onboarding/application_status.dart';
 
 class CustomAlertDialog extends StatelessWidget {
+  const CustomAlertDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Verification sent?'),
-      content: Text(
+      content: const Text(
           'A verification message has been sent to your registered email. Please click on the link to verify your account'),
       actions: [
         TextButton(
@@ -42,3 +44,23 @@ class CustomAlertDialog extends StatelessWidget {
      );
    }
  }
+
+class DocumentsAlertDialog extends StatelessWidget {
+  const DocumentsAlertDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Success !'),
+      content: const Text('Your documents has been successfully  submitted.'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('OK'),
+        ),
+      ],
+    );
+  }
+}

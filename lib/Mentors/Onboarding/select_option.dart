@@ -13,7 +13,7 @@ class SelectOption extends StatelessWidget {
         backgroundColor: const Color.fromARGB(187, 252, 248, 252),
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -66,7 +66,7 @@ class SelectOption extends StatelessWidget {
 
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Icon(Icons.person, color:  Color.fromARGB(255, 161, 139, 164), size: 60),
+                    const Icon(Icons.person, color:  Color.fromARGB(255, 0, 180, 180), size: 60),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -111,7 +111,7 @@ class SelectOption extends StatelessWidget {
 
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Icon(Icons.person, color:  Color.fromARGB(255, 161, 139, 164), size: 60),
+                    const Icon(Icons.person, color:  Color.fromARGB(255, 0, 180, 180), size: 60),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -151,7 +151,7 @@ class SelectOption extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Icon(Icons.person, color: Color.fromARGB(255, 161, 139, 164), size: 60),
+                    const Icon(Icons.person, color: Color.fromARGB(255, 0, 180, 180), size: 60),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

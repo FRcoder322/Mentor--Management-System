@@ -11,16 +11,16 @@ class ProgramInterest extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text("Mentor"),
+          title: const Text("Mentor"),
         ),
-        body: Center(
+        body: const Center(
           child: ProgramInterestContent(),
         ),
       ),
@@ -48,7 +48,7 @@ class ProgramInterestContent extends StatelessWidget {
             SizedBox(height: 10),
             Text("Fill in the form below"),
             SizedBox(height:25),
-            Text("Program of Interest ?"),
+            const Text("Program of Interest ?"),
             TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -56,7 +56,7 @@ class ProgramInterestContent extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            Text("Years of experience"),
+            const Text("Years of experience"),
             TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -64,7 +64,7 @@ class ProgramInterestContent extends StatelessWidget {
               ),
             ),
             SizedBox(height: 45),
-            Text("Been a mentor before? "),
+            const Text("Been a mentor before? "),
             SizedBox(height: 10),
             Row(
               children: [],
@@ -78,7 +78,10 @@ class ProgramInterestContent extends StatelessWidget {
 
                 },
                 child: Text("Next"),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 180, 180)),
               ),
+            ),
             ),
           ],
         ),
