@@ -226,6 +226,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:mms_project/Mentors/Onboarding/application_status.dart';
+import 'package:mms_project/Mentors/Onboarding/mentor_dashboard.dart';
 
 import 'alert_dialog.dart';
 
@@ -363,11 +365,11 @@ class _DocumentsContentState extends State<DocumentsContent> {
                                 selectedFiles.remove(file);
                               });
                             },
-                            child: Text('Remove'),
+                            child: const Text('Remove'),
                           ),
                         ],
                       ),
-                      SizedBox(height: 8), // Add vertical spacing between files
+                      const SizedBox(height: 8), // Add vertical spacing between files
                     ],
                   ),
               ],
@@ -418,11 +420,11 @@ class _DocumentsContentState extends State<DocumentsContent> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return  DocumentsAlertDialog();
+                  return const DocumentsAlertDialog();
                 },
               );
             },
-            child: Text("Next"),
+            child: const Text("Next"),
           ),
         ],
       ),

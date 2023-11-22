@@ -11,14 +11,14 @@ class TechnicalProficiency extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 0, 180, 180),
+          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text("Mentor"),
+          title: const Text("Mentor"),
         ),
         body: Center(
           child: SelectableCard(),
@@ -29,6 +29,8 @@ class TechnicalProficiency extends StatelessWidget {
 }
 
 class SelectableCard extends StatelessWidget {
+  const SelectableCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

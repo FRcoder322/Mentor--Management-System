@@ -403,6 +403,10 @@
 // // }
 import 'package:flutter/material.dart';
 import 'package:mms_project/Mentors/Dashboard/dashboard.dart';
+import 'package:mms_project/Mentors/More/Reports/Programs-Report/program_reports.dart';
+import 'package:mms_project/Mentors/Tasks/mentor_tasks.dart';
+
+import '../Programs/programs.dart';
 
 class MentorDashboard extends StatelessWidget {
   const MentorDashboard({Key? key}) : super(key: key);
@@ -588,38 +592,7 @@ class MentorDashboard extends StatelessWidget {
             ],
           ),
         ),
-//         bottomNavigationBar: BottomNavigationBar(
-//           selectedItemColor: Colors.black,
-//           unselectedItemColor: Colors.black45,
-//           type: BottomNavigationBarType.fixed,
-//           items: const [
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.dashboard),
-//               label: 'Dashboard',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.apps),
-//               label: 'Programs',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.assignment),
-//               label: 'Tasks',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.message),
-//               label: 'Messages',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.more_horiz),
-//               label: 'More',
-//             ),
-//           ],
-//         ),
-//
-//       ),
-//     );
-//   }
-// }
+
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black45,
@@ -655,11 +628,11 @@ class MentorDashboard extends StatelessWidget {
                 break;
               case 1:
               // Navigate to Programs page
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => ProgramsPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => const Programs()));
                 break;
               case 2:
               // Navigate to Tasks page
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => TasksPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MentorTasks()));
                 break;
               case 3:
               // Navigate to Messages page
@@ -667,7 +640,7 @@ class MentorDashboard extends StatelessWidget {
                 break;
               case 4:
               // Navigate to More page
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgramReports()));
                 break;
             }
           },

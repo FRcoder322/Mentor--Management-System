@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mms_project/Mentors/Onboarding/mentor_dashboard.dart';
 import 'package:mms_project/Mentors/Onboarding/program_profile.dart';
 import 'package:mms_project/Mentors/Onboarding/application_status.dart';
+
+import '../Dashboard/dashboard.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({super.key});
@@ -56,10 +59,11 @@ class DocumentsAlertDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MentorDashboard()) );
           },
-          child: const Text('OK'),
+          child: const Text('OK',style: TextStyle(color: Colors.black),),
         ),
+
       ],
     );
   }
