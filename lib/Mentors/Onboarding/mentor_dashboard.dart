@@ -409,7 +409,10 @@ import 'package:mms_project/Mentors/Tasks/mentor_tasks.dart';
 import '../Programs/programs.dart';
 
 class MentorDashboard extends StatelessWidget {
-  const MentorDashboard({Key? key}) : super(key: key);
+
+  const MentorDashboard({Key? key,}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -425,7 +428,7 @@ class MentorDashboard extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Hi Sandy"),
+                    child: const Text("Hi, Sandy"),
                   ),
                   const Text("Admin"),
                 ],
@@ -621,7 +624,7 @@ class MentorDashboard extends StatelessWidget {
           ],
           onTap: (int index) {
             // Handle navigation based on the tapped index
-            switch (index) {
+             switch (index) {
               case 0:
               // Navigate to Dashboard page
                Navigator.push(context, MaterialPageRoute(builder: (context) => const MentorDashboard()));

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mms_project/Mentors/Onboarding/upload_documents.dart';
 
@@ -21,7 +22,7 @@ class TechnicalProficiency extends StatelessWidget {
           title: const Text("Mentor"),
         ),
         body: Center(
-          child: SelectableCard(),
+          child: const SelectableCard(),
         ),
       ),
     );
@@ -29,103 +30,114 @@ class TechnicalProficiency extends StatelessWidget {
 }
 
 class SelectableCard extends StatelessWidget {
-  const SelectableCard({super.key});
+  const SelectableCard({Key? key});
+
+  void updateUserInformation(List<String> selectedLanguages, List<String> selectedRoles) {
+    CollectionReference Mentors = FirebaseFirestore.instance.collection('Mentors');
+    String userId = 'Mentors';
+
+    Mentors.doc(userId).set({
+      'selectedLanguages': selectedLanguages,
+      'selectedRoles': selectedRoles,
+    }).then((value) {
+      print("User information updated successfully!");
+    }).catchError((error) {
+      print("Failed to update user information: $error");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<String> selectedLanguages = [];
+    List<String> selectedRoles = [];
+
+    List<CardWidget> languageWidgets = [
+      const CardWidget(language: 'Python'),
+      const CardWidget(language: 'Java'),
+      const CardWidget(language: 'Django'),
+      const CardWidget(language: 'Kotlin'),
+      const CardWidget(language: 'JavaScript'),
+      const CardWidget(language: 'Vue.js'),
+      const CardWidget(language: 'Dart'),
+      const CardWidget(language: 'PHP'),
+      const CardWidget(language: 'MySQL'),
+    ];
+
+    List<CardWidget> roleWidgets = [
+      const CardWidget(language: 'Learner'),
+      const CardWidget(language: 'Mentor'),
+      const CardWidget(language: 'Program Assistant'),
+      const CardWidget(language: 'Mentor Manager'),
+      const CardWidget(language: 'Program Lead'),
+    ];
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(136, 252, 248, 252),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            const Text("Become a mentor",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),
-            const SizedBox(height: 10,),
+            const Text("Become a mentor", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            const SizedBox(height: 10),
             const Text("Fill in the form below"),
-            SizedBox(height: 30,),
-              const Text("Technical Proficiency",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-            SizedBox(height: 10,),
-
+            const SizedBox(height: 30),
+            const Text("Technical Proficiency", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CardWidget(language: 'Python',),
-                CardWidget(language: 'Java',),
-                CardWidget(language: 'Django',),
-                CardWidget(language: 'Kotlin',),
-
-              ],
-
+              children: languageWidgets,
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10),
+            const Text("Previous Role Held", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CardWidget(language: 'JavaScript',),
-                CardWidget(language: 'Vue.js',),
-                CardWidget(language: 'Dart',),
-
-              ],
-
+              children: roleWidgets,
             ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CardWidget(language: 'PHP',),
-                CardWidget(language: 'MySQL',),
-
-              ],
-
-            ),
-            SizedBox(height: 20,),
-            Text("Previous Roles Held",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CardWidget(language: 'Learner',),
-                CardWidget(language: 'Mentor',),
-                CardWidget(language: 'Program Assistant',),
-
-              ],
-
-            ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CardWidget(language: 'Mentor Manager',),
-                CardWidget(language: 'Program Lead',),
-
-              ],
-            ),
-            SizedBox(height: 100,),
+            const SizedBox(height: 100),
             SizedBox(
               width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  for (var widget in languageWidgets) {
+                    if (widget.getIsSelected()) {
+                      selectedLanguages.add(widget.language);
+                    }
+                  }
 
-             child: ElevatedButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => UploadDocuments()));
-            },
-            child: Text("Next")),
-            )
+                  for (var widget in roleWidgets) {
+                    if (widget.getIsSelected()) {
+                      selectedRoles.add(widget.language);
+                    }
+                  }
+
+                  const String userId = 'userId';
+                  updateUserInformation(selectedLanguages, selectedRoles);
+
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UploadDocuments()));
+                },
+                child: const Text("Next"),
+              ),
+            ),
           ],
         ),
-
       ),
     );
   }
 }
 
-
-
 class CardWidget extends StatefulWidget {
   final String language;
 
-  CardWidget({required this.language});
+  const CardWidget({required this.language});
 
   @override
   _CardWidgetState createState() => _CardWidgetState();
+
+  // Add this method to get the isSelected status
+  bool getIsSelected() {
+    final _CardWidgetState state = _CardWidgetState();
+    return state.isSelected;
+  }
 }
 
 class _CardWidgetState extends State<CardWidget> {
@@ -134,7 +146,7 @@ class _CardWidgetState extends State<CardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0), // Add padding to create space between cards
+      padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
           setState(() {
@@ -147,7 +159,7 @@ class _CardWidgetState extends State<CardWidget> {
             color: isSelected ? const Color.fromARGB(255, 161, 139, 164) : const Color.fromARGB(136, 252, 248, 252),
           ),
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text(
               widget.language,
               style: TextStyle(
@@ -161,4 +173,8 @@ class _CardWidgetState extends State<CardWidget> {
     );
   }
 }
+
+
+
+
 

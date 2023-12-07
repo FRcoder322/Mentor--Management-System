@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mms_project/Mentors/More/Reports/Programs-Report/reports_page.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+
+
+
 
 import '../../../Onboarding/mentor_dashboard.dart';
 import '../../../Programs/programs.dart';
@@ -167,7 +171,7 @@ class _ProgramReportsContentState extends State<ProgramReportsContent> {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportsPage()));
         break;
       case "My Managers":
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyManagersPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => MyManagersPage()));
         break;
       case "My Certificates":
         Navigator.push(context, MaterialPageRoute(builder: (context) => const MyCertificatesPage()));
@@ -211,35 +215,298 @@ class _ProgramReportsContentState extends State<ProgramReportsContent> {
 
 
 
+
+class Mentor {
+  final String name;
+  final List<String> roles;
+  final String text;
+  final String profilePicture;
+
+  Mentor({
+    required this.profilePicture,
+    required this.name,
+    required this.roles,
+    required this.text,
+  });
+}
+
 class MyManagersPage extends StatelessWidget {
-  const MyManagersPage({Key? key}) : super(key: key);
+  MyManagersPage({Key? key}) : super(key: key);
+
+  // List of mentors
+  final List<Mentor> mentors = [
+    Mentor(name: "John Doe", roles: ["Mentor Manager", "Program Ass"], text: "program manager, Ilab, He/She", profilePicture: "url_to_image1"),
+    Mentor(name: "Jane Smith", roles: ["Admin", "Mentor"], text: "Mentor", profilePicture: "url_to_image2"),
+    Mentor(name: "Jane Smith", roles: ["Mentor GCP", "Mentor"], text: "Mentor", profilePicture: "url_to_image2"),
+    Mentor(name: "Jane Smith", roles: ["Admin", "Mentor Azure"], text: "Mentor", profilePicture: "url_to_image2"),
+    Mentor(name: "Jane Smith", roles: ["Program Ass Moringa", "Mentor"], text: "Mentor", profilePicture: "url_to_image2"),
+    Mentor(name: "Jane Smith", roles: ["Security Expert", "Mentor"], text: "Mentor", profilePicture: "url_to_image2"),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Managers"),
+        toolbarHeight: 100,
+        title: const Text('My Managers'),
+        backgroundColor: Colors.teal,
       ),
-      body: const Center(
-        child: Text("This is the My Managers Page"),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10,),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("Mentor Managers"),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("Admin"),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20,),
+            // List of mentors with profile pictures, names, roles, and text
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: mentors.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(mentors[index].profilePicture),
+                        ),
+                        const SizedBox(width: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(mentors[index].name),
+                            const SizedBox(height: 5),
+                            Text(
+                              mentors[index].text,
+                              style: const TextStyle(color: Colors.black54),
+                            ),
+                            const SizedBox(height: 5),
+                            // Display roles in a row
+                            Row(
+                              children: mentors[index].roles.map((role) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                  margin: const EdgeInsets.only(right: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.teal,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                    role,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class MyCertificatesPage extends StatelessWidget {
+
+// class MyCertificatesPage extends StatefulWidget {
+//   const MyCertificatesPage({Key? key}) : super(key: key);
+//
+//   @override
+//   _MyCertificatesPageState createState() => _MyCertificatesPageState();
+// }
+//
+// class Certificate {
+//   final String name;
+//   final String role;
+//
+//   Certificate({required this.name, required this.role});
+// }
+//
+// class _MyCertificatesPageState extends State<MyCertificatesPage> {
+//   List<Certificate> certificates = [
+//     Certificate(name: "Certificate 1", role: "Role 1"),
+//     Certificate(name: "Certificate 2", role: "Role 2"),
+//     Certificate(name: "Certificate 3", role: "Role 3"),
+//     // Add more certificates as needed
+//   ];
+//
+//   List<bool> isExpandedList = List.generate(3, (index) => false); // Initially, all dropdowns are closed
+//
+//   String searchTerm = '';
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Certificates"),
+//       ),
+//       body: Column(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: TextField(
+//               decoration: const InputDecoration(
+//                 hintText: "Search Certificates",
+//                 prefixIcon: Icon(Icons.search),
+//               ),
+//               onChanged: (value) {
+//                 setState(() {
+//                   searchTerm = value.toLowerCase();
+//                 });
+//               },
+//             ),
+//           ),
+//           Expanded(
+//             child: ListView.builder(
+//               itemCount: certificates.length,
+//               itemBuilder: (context, index) {
+//                 return ExpansionPanelList(
+//                   elevation: 1,
+//                   expandedHeaderPadding: EdgeInsets.all(0),
+//                   expansionCallback: (int panelIndex, bool isExpanded) {
+//                     setState(() {
+//                       isExpandedList[index] = !isExpanded;
+//                     });
+//                   },
+//                   children: [
+//                     ExpansionPanel(
+//                       headerBuilder: (BuildContext context, bool isExpanded) {
+//                         return ListTile(
+//                           title: Text(certificates[index].name),
+//                           subtitle: Text(certificates[index].role),
+//                         );
+//                       },
+//                       body: const Padding(
+//                         padding: EdgeInsets.all(8.0),
+//                         child: Text("Certificate details go here."),
+//                       ),
+//                       isExpanded: isExpandedList[index],
+//                     ),
+//                   ],
+//                 );
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+class MyCertificatesPage extends StatefulWidget {
   const MyCertificatesPage({Key? key}) : super(key: key);
 
   @override
+  _MyCertificatesPageState createState() => _MyCertificatesPageState();
+}
+
+class Certificate {
+  final String name;
+  final String role;
+  final String assets; // Add a field for the PDF asset path
+
+  Certificate({required this.name, required this.role, required this.assets});
+}
+
+class _MyCertificatesPageState extends State<MyCertificatesPage> {
+  List<Certificate> certificates = [
+    Certificate(name: "Fullstack Developer", role: "Role 1", assets: "assets/GAD Certificate.pdf"),
+    Certificate(name: "Android Developer", role: "Role 2", assets: "assets/GAD Certificate.pdf"),
+    Certificate(name: "DevOps", role: "Role 3",assets: "assets/GAD Certificate.pdf"),
+
+  ];
+
+  List<bool> isExpandedList = List.generate(3, (index) => false); // Initially, all dropdowns are closed
+
+  String searchTerm = '';
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Certificates"),
+        title: const Text("Certificates"),
       ),
-      body: const Center(
-        child: Text("This is the My Certificates Page"),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: "Search Certificates",
+                prefixIcon: Icon(Icons.search),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  searchTerm = value.toLowerCase();
+                });
+              },
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: certificates.length,
+              itemBuilder: (context, index) {
+                return ExpansionPanelList(
+                  elevation: 1,
+                  expandedHeaderPadding: EdgeInsets.all(0),
+                  expansionCallback: (int panelIndex, bool isExpanded) {
+                    setState(() {
+                      isExpandedList[index] = !isExpanded;
+                    });
+                  },
+                  children: [
+                    ExpansionPanel(
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return ListTile(
+                          title: Text(certificates[index].name),
+                          subtitle: Text(certificates[index].role),
+                        );
+                      },
+                      body: Container(
+                        height: 300, // Adjust the height as needed
+                        child: isExpandedList[index]
+                            ? PDFView(
+                          filePath: certificates[index].assets,
+                          autoSpacing: true,
+                          pageSnap: true,
+                          swipeHorizontal: true,
+                          nightMode: false,
+                        )
+                            : Container(),
+                      ),
+                      isExpanded: isExpandedList[index],
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-

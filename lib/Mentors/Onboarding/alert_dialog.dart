@@ -5,40 +5,64 @@ import 'package:mms_project/Mentors/Onboarding/application_status.dart';
 
 import '../Dashboard/dashboard.dart';
 
+// class CustomAlertDialog extends StatelessWidget {
+//   final username;
+//   const CustomAlertDialog({super.key,required this.username});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return AlertDialog(
+//       title: Text('Verification sent?'),
+//       content: const Text(
+//           'A verification message has been sent to your registered email. Please click on the link to verify your account'),
+//       actions: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.of(context).push(MaterialPageRoute(
+//                 builder: (context) => const ProgramProfile()));
+//           },
+//           child: Text('Continue'),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
 class CustomAlertDialog extends StatelessWidget {
-  const CustomAlertDialog({super.key});
+  final String username;
+
+  const CustomAlertDialog({Key? key, required this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Verification sent?'),
-      content: const Text(
-          'A verification message has been sent to your registered email. Please click on the link to verify your account'),
+      title: const Text('Registration Successful'),
+      content: Text('Welcome, $username!'),
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const ProgramProfile()));
+            Navigator.of(context).pop();
           },
-          child: Text('Continue'),
+          child: const Text('OK'),
         ),
       ],
     );
   }
 }
+
  class ProfileAlertDialog extends StatelessWidget {
    const ProfileAlertDialog({super.key});
 
    @override
    Widget build(BuildContext context) {
      return AlertDialog(
-       title: Text("Profile Saved Successfully"),
+       title: const Text("Profile Saved Successfully"),
      content: Text(
      'You have successfully created your  profile and it has been saved.Kindly click on done to continue'
      ),
      actions: [
        TextButton(onPressed: (){
-         Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApplicationStatus()) );
+         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ApplicationStatus(username: '',)) );
 
      },
      child: Text("Done")),
@@ -49,6 +73,7 @@ class CustomAlertDialog extends StatelessWidget {
  }
 
 class DocumentsAlertDialog extends StatelessWidget {
+
   const DocumentsAlertDialog({super.key});
 
   @override
@@ -59,7 +84,7 @@ class DocumentsAlertDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MentorDashboard()) );
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const ApplicationStatus(username: '',)) );
           },
           child: const Text('OK',style: TextStyle(color: Colors.black),),
         ),

@@ -69,7 +69,7 @@ class MentorOnboardContent extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SelectOption()));
+                    builder: (context) => const SelectOption(userId: '',)));
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(

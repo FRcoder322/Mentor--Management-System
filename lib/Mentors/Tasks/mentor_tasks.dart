@@ -45,13 +45,17 @@ class _MentorTasksState extends State<MentorTasks> {
             ],
           ) ,
           actions: const [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(Icons.search),
-                SizedBox(width: 14),
-                Icon(Icons.notifications),
-              ],
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
+
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(Icons.search),
+                  SizedBox(width: 14),
+                  Icon(Icons.notifications),
+                ],
+              ),
             ),
           ],
         ),
@@ -113,7 +117,6 @@ class _MentorTasksState extends State<MentorTasks> {
     );
   }
 }
-
 class TasksContent extends StatefulWidget {
   const TasksContent({super.key, required String title});
 
@@ -123,7 +126,7 @@ class TasksContent extends StatefulWidget {
 
 class _TasksContentState extends State<TasksContent> {
   final TextEditingController _searchController = TextEditingController();
-  List<String> allTasks= [
+  List<String> allTasks = [
     "API",
     "DevOps",
     "Sdl",
@@ -139,9 +142,8 @@ class _TasksContentState extends State<TasksContent> {
     _searchController.addListener(() {
       setState(() {
         filteredTasks = allTasks
-            .where((program) => program
-            .toLowerCase()
-            .contains(_searchController.text.toLowerCase()))
+            .where((program) =>
+            program.toLowerCase().contains(_searchController.text.toLowerCase()))
             .toList();
       });
     });
@@ -152,12 +154,12 @@ class _TasksContentState extends State<TasksContent> {
     _searchController.dispose();
     super.dispose();
   }
-  @override
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      child: ListView(
+      child: Column(
         children: [
           TextField(
             controller: _searchController,
@@ -165,11 +167,19 @@ class _TasksContentState extends State<TasksContent> {
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.search),
               hintText: "Search task",
+              contentPadding: EdgeInsets.all(16), // Adjust the vertical padding
             ),
           ),
+
           const SizedBox(height: 16),
-          for (String task in filteredTasks)
-            buildProgramTile(context, task, "Some Date"),
+          Expanded(
+            child: ListView(
+              children: [
+                for (String task in filteredTasks)
+                  buildProgramTile(context, task, "Some Date"),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -205,7 +215,6 @@ class _TasksContentState extends State<TasksContent> {
     );
   }
 }
-
 
 
 
