@@ -402,11 +402,10 @@
 // //   }
 // // }
 import 'package:flutter/material.dart';
-import 'package:mms_project/Mentors/Dashboard/dashboard.dart';
-import 'package:mms_project/Mentors/More/Reports/Programs-Report/program_reports.dart';
-import 'package:mms_project/Mentors/Tasks/mentor_tasks.dart';
 
+import '../More/Reports/Programs-Report/program_reports.dart';
 import '../Programs/programs.dart';
+import '../Tasks/mentor_tasks.dart';
 
 class MentorDashboard extends StatelessWidget {
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mms_project/Mentors/More/Reports/Programs-Report/program_reports.dart';
-import 'package:mms_project/Mentors/Tasks/objectOrientedProgramming.dart';
-
+import '../More/Reports/Programs-Report/program_reports.dart';
 import '../Onboarding/mentor_dashboard.dart';
 import '../Programs/programs.dart';
+import 'objectOrientedProgramming.dart';
 
 class MentorTasks extends StatefulWidget {
   const MentorTasks({super.key});

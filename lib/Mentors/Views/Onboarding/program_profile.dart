@@ -401,7 +401,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
-import '../../Providers/user_data_provider.dart';
+import '../../../Providers/user_data_provider.dart';
 import 'program_interest.dart';
 
 class ProgramProfile extends StatelessWidget {
@@ -449,7 +449,7 @@ class ProfileContent extends StatefulWidget {
 
 class _ProfileContentState extends State<ProfileContent> {
   File? pickedImageAsset;
-  bool isLoading = false;
+  bool isLoading = true;
 
   Future<void> _pickImage() async {
     setState(() {
@@ -474,7 +474,7 @@ class _ProfileContentState extends State<ProfileContent> {
     }
   }
 
-  Future<void> updateUserInfo(displayName) async {
+  Future<void> updateUserInfo(String displayName) async {
     var userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
 
     try {
@@ -486,6 +486,7 @@ class _ProfileContentState extends State<ProfileContent> {
         'country': userDataProvider.userData.country,
         'city': userDataProvider.userData.city,
         'avatar': userDataProvider.userData.avatarUrl,
+
       });
 
       print('Data saved to Firestore successfully!');

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mms_project/Mentors/Onboarding/select_option.dart';
+
+import 'package:mms_project/Mentors/Views/Onboarding/select_option.dart';
+
+import 'login.dart';
 
 class MentorOnboard extends StatelessWidget {
   const MentorOnboard({super.key});
@@ -86,7 +89,9 @@ class MentorOnboardContent extends StatelessWidget {
           Container(
             width: 300,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
                     const Color.fromARGB(255, 242, 237, 243)),

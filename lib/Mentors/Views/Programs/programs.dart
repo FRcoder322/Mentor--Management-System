@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mms_project/Mentors/More/Reports/Programs-Report/program_reports.dart';
-import 'package:mms_project/Mentors/Programs/cybersecurity.dart';
-import 'package:mms_project/Mentors/Tasks/mentor_tasks.dart';
 
+import '../More/Reports/Programs-Report/program_reports.dart';
+import '../More/Reports/Programs-Report/program_view_report.dart';
 import '../Onboarding/mentor_dashboard.dart';
+import '../Tasks/mentor_tasks.dart';
 
 class Programs extends StatelessWidget {
   const Programs({Key? key});
@@ -182,7 +182,7 @@ class _ProgramContentsState extends State<ProgramContents> {
         // Handle navigation to the next page here
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const CyberSecurity()),
+          MaterialPageRoute(builder: (context) => const CyberSecurity(title: '',)),
         );
       },
       child: Card(

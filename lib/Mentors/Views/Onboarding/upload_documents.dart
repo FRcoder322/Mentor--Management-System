@@ -223,17 +223,22 @@
 //   }
 // }
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:mms_project/Mentors/Onboarding/application_status.dart';
-import 'package:mms_project/Mentors/Onboarding/mentor_dashboard.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Providers/user_data_provider.dart';
+import '../../../Services/firebase_service.dart';
 import 'alert_dialog.dart';
 
 
 class UploadDocuments extends StatelessWidget {
-  UploadDocuments({Key? key}) : super(key: key);
+  
+  
+  UploadDocuments({super.key});
 
   final GlobalKey<_DocumentsContentState> _documentsContentKey =
   GlobalKey<_DocumentsContentState>();
@@ -292,6 +297,22 @@ class DocumentsContent extends StatefulWidget {
 
   final VoidCallback uploadFiles;
 
+  void updateUserInfo(BuildContext context, List<String> documents, ) async {
+    var userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
+
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance.collection('Mentors').doc(userDataProvider.userData.documents).update({
+        'documents': documents,
+
+      });
+
+      print('Data saved to Firestore successfully!');
+    } catch (e) {
+      print('Error saving data to Firestore: $e');
+    }
+  }
+
   @override
   _DocumentsContentState createState() => _DocumentsContentState();
 }
@@ -299,11 +320,16 @@ class DocumentsContent extends StatefulWidget {
 class _DocumentsContentState extends State<DocumentsContent> {
   List<PlatformFile> selectedFiles = [];
 
+  final FirebaseServices firebaseServices =  FirebaseServices();
+
+
   void addFiles(List<PlatformFile> newFiles) {
     setState(() {
       selectedFiles.addAll(newFiles);
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -416,7 +442,23 @@ class _DocumentsContentState extends State<DocumentsContent> {
           ),
           const SizedBox(height: 80),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              var firebaseServices = Provider.of<FirebaseServices>(context, listen: false);
+
+              // Prepare user data from your form
+              Map<String, dynamic> userData = {
+                'socials': {
+                  'twitter': 'your_twitter_username',
+                  'github': 'your_github_username',
+                  'linkedin': 'your_linkedin_username',
+                },
+                // Add other user data fields
+              };
+
+              // Update user in Firestore using the method from the FirebaseServices class
+              await firebaseServices.updateUserInfo(context, userData);
+
+              // Show the next dialog or navigate to the next screen
               showDialog(
                 context: context,
                 builder: (BuildContext context) {

@@ -92,7 +92,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mms_project/Mentors/Onboarding/technical_proficiency.dart';
+import 'package:mms_project/Mentors/Views/Onboarding/technical_proficiency.dart';
 
 class ProgramInterest extends StatelessWidget {
   const ProgramInterest({Key? key});
@@ -153,16 +153,16 @@ class ProgramInterestContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10),
-            Text(
+            const Text(
               "Become a mentor",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            SizedBox(height: 10),
-            Text("Fill in the form below"),
+            const SizedBox(height: 10),
+            const Text("Fill in the form below"),
             SizedBox(height: 25),
             const Text("Program of Interest ?"),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "FullStack Development",
               ),
@@ -170,10 +170,10 @@ class ProgramInterestContent extends StatelessWidget {
                 programOfInterest = value;
               },
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             const Text("Years of experience"),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "e.g 3 years",
               ),
@@ -181,7 +181,7 @@ class ProgramInterestContent extends StatelessWidget {
                 yearsOfExperience = value;
               },
             ),
-            SizedBox(height: 45),
+            const SizedBox(height: 45),
             const Text("Been a mentor before? "),
             SizedBox(height: 10),
             Row(

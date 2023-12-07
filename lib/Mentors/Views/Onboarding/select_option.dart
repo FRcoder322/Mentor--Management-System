@@ -181,7 +181,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
-import 'package:mms_project/Mentors/Onboarding/register.dart';
+import 'package:mms_project/Mentors/Views/Onboarding/register.dart';
 
 class SelectOption extends StatefulWidget {
   const SelectOption({Key? key, required String userId}) : super(key: key);

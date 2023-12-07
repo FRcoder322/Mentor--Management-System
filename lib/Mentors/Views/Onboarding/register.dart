@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mms_project/Mentors/Onboarding/program_profile.dart';
-import 'package:mms_project/Mentors/Onboarding/select_option.dart';
+import 'package:mms_project/Mentors/Views/Onboarding/program_profile.dart';
 
 import 'alert_dialog.dart';
 import 'login.dart';
@@ -230,7 +229,7 @@ class _RegistrationContentState extends State<RegistrationContent> {
               const Text("Already have an account ?"),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
                 },
                 child: const Text(
                   "Login",
