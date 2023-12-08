@@ -150,7 +150,22 @@ class _ApplicationStatus extends State<ApplicationStatus> {
             const SizedBox(height: 100,),
             ElevatedButton(onPressed: (){
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const MentorDashboard()),);
-            }, child: const Text("Start your Journey"))
+            },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  const EdgeInsets.symmetric(vertical: 20),
+                ),
+                shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                ),
+              ),
+              child: const Center(
+                child: Text("Start your journey"),
+              ),
+            ),
 
         ],
 

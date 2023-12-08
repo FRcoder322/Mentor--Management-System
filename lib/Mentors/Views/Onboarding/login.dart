@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'program_profile.dart';
-
 // class LoginPage extends StatefulWidget {
 //   const LoginPage({Key? key});
 //
@@ -138,33 +133,138 @@ import 'program_profile.dart';
 //
 
 
-class LoginPage extends StatelessWidget {
+// class LoginPage extends StatelessWidget {
+//   final TextEditingController emailController = TextEditingController();
+//   final TextEditingController passwordController = TextEditingController();
+//
+//   LoginPage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Login'),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             TextField(
+//               controller: emailController,
+//               decoration: const InputDecoration(labelText: 'Email'),
+//             ),
+//             TextField(
+//               controller: passwordController,
+//               decoration: const InputDecoration(labelText: 'Password'),
+//               obscureText: true,
+//             ),
+//             SizedBox(height: 20),
+//             ElevatedButton(
+//               onPressed: () {
+//                 // Implement login logic here
+//                 // Fetch user data from Firestore based on email and password
+//                 String email = emailController.text;
+//                 String password = passwordController.text;
+//
+//                 Navigator.pushReplacement(
+//                   context,
+//                   MaterialPageRoute(builder: (context) => const ProgramProfile(userId: '',)),
+//                 );
+//               },
+//               child: Text('Login'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+import 'package:flutter/material.dart';
+
+import 'program_profile.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        toolbarHeight: 100,
+        backgroundColor: const Color.fromARGB(255, 0, 180, 180),
+        title: Row(
+          children: [
+            // IconButton(
+            //   icon: const Icon(Icons.arrow_back),
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+            const Text("Login"),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 16),
+            const Text(
+              "Welcome",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "Mentor Management System",
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 30),
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(color: Colors.teal),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+              ),
+              keyboardType: TextInputType.emailAddress,
             ),
+            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
-              decoration: const InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                labelStyle: TextStyle(color: Colors.teal),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+              ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
                 // Implement login logic here
@@ -174,10 +274,28 @@ class LoginPage extends StatelessWidget {
 
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProgramProfile(userId: '',)),
+                  MaterialPageRoute(builder: (context) => const ProgramProfile(userId: '')),
                 );
               },
-              child: Text('Login'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  const EdgeInsets.symmetric(vertical: 20),
+                ),
+                shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                ),
+              ),
+              child: const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'Login',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
             ),
           ],
         ),
@@ -185,9 +303,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

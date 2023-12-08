@@ -420,7 +420,7 @@ class MentorDashboard extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: const Color.fromARGB(255, 161, 139, 164),
+          backgroundColor: Colors.teal,
           title: Row(
             children: [
               Column(

@@ -36,6 +36,6 @@ class UserData {
     required this.linkedinUsername,
     required this.socialMedia,
     required this.avatarUrl,
-    required this.displayName
+    required this.displayName,
   });
 }

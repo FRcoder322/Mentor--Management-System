@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 import 'Mentors/Views/Onboarding/mentor_onboard.dart';
 import 'Providers/user_data_provider.dart';
+import 'Services/firebase_service.dart';
 import 'firebase_options.dart';
 
-   Future<void> main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp( options:DefaultFirebaseOptions.currentPlatform,);
-   runApp(ChangeNotifierProvider(
-        create: (context) => UserDataProvider(),
-     child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
-     ),
-   ));
- }
+void main() async {
+     WidgetsFlutterBinding.ensureInitialized();
+     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+     runApp(
+          MultiProvider(
+               providers: [
+                    ChangeNotifierProvider(create: (context) => UserDataProvider()),
+                    // Add other providers here, for example:
+                     Provider<FirebaseServices>(create: (context) => FirebaseServices()),
+               ],
+               child: MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    home: SplashScreen(),
+               ),
+          ),
+     );
+}
 
 class SplashScreen extends StatelessWidget {
      @override

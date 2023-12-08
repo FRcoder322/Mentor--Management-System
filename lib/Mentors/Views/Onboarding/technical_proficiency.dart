@@ -175,6 +175,246 @@
 //   }
 // }
 
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/material.dart';
+// import 'package:mms_project/Mentors/Views/Onboarding/upload_documents.dart';
+// import 'package:provider/provider.dart';
+//
+// import '../../../Providers/user_data_provider.dart';
+//
+// class TechnicalProficiency extends StatelessWidget {
+//   const TechnicalProficiency({Key? key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//         appBar: AppBar(
+//           toolbarHeight: 100,
+//           backgroundColor: const Color.fromARGB(255, 0, 180, 180),
+//           leading: IconButton(
+//             icon: Icon(Icons.arrow_back),
+//             onPressed: () {
+//               Navigator.pop(context);
+//             },
+//           ),
+//           title: const Text("Mentor"),
+//         ),
+//         body: const Center(
+//           child: SelectableCard(),
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class SelectableCard extends StatelessWidget {
+//   const SelectableCard({Key? key});
+//
+//   void updateUserInfo(BuildContext context, List<String> selectedLanguages, List<String> selectedRoles) async {
+//     var userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
+//
+//     try {
+//       User? user = FirebaseAuth.instance.currentUser;
+//       await FirebaseFirestore.instance.collection('Mentors').doc(user?.uid).update({
+//         'selectedLanguages': selectedLanguages,
+//         'selectedRoles': selectedRoles,
+//       });
+//
+//       print('Data saved to Firestore successfully!');
+//     } catch (e) {
+//       print('Error saving data to Firestore: $e');
+//     }
+//   }
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     List<String> selectedLanguages = [];
+//     List<String> selectedRoles = [];
+//
+//     List<CardWidget> languageWidgets = [
+//       CardWidget(
+//         language: 'Python',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedLanguages.add('Python');
+//           } else {
+//             selectedLanguages.remove('Python');
+//           }
+//         },
+//       ),
+//       CardWidget(
+//         language: 'Python',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedLanguages.add('Python');
+//           } else {
+//             selectedLanguages.remove('Python');
+//           }
+//         },
+//       ),
+//       CardWidget(
+//         language: 'Python',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedLanguages.add('Python');
+//           } else {
+//             selectedLanguages.remove('Python');
+//           }
+//         },
+//       ),
+//       CardWidget(
+//         language: 'Python',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedLanguages.add('Python');
+//           } else {
+//             selectedLanguages.remove('Python');
+//           }
+//         },
+//       ),
+//       // Add other languageWidgets with similar changes
+//     ];
+//
+//     List<CardWidget> roleWidgets = [
+//       CardWidget(
+//         language: 'Learner',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedRoles.add('Learner');
+//           } else {
+//             selectedRoles.remove('Learner');
+//           }
+//         },
+//       ),
+//       CardWidget(
+//         language: 'Learner',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedRoles.add('Learner');
+//           } else {
+//             selectedRoles.remove('Learner');
+//           }
+//         },
+//       ),
+//       CardWidget(
+//         language: 'Learner',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedRoles.add('Learner');
+//           } else {
+//             selectedRoles.remove('Learner');
+//           }
+//         },
+//       ),
+//       CardWidget(
+//         language: 'Learner',
+//         onSelectionChanged: (isSelected) {
+//           if (isSelected) {
+//             selectedRoles.add('Learner');
+//           } else {
+//             selectedRoles.remove('Learner');
+//           }
+//         },
+//       ),
+//       // Add other roleWidgets with similar changes
+//     ];
+//
+//     return Scaffold(
+//       backgroundColor: const Color.fromARGB(136, 252, 248, 252),
+//       body: Padding(
+//         padding: const EdgeInsets.all(20.0),
+//         child: ListView(
+//           children: [
+//             const Text("Become a mentor", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+//             const SizedBox(height: 10),
+//             const Text("Fill in the form below"),
+//             const SizedBox(height: 30),
+//             const Text("Technical Proficiency", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+//             const SizedBox(height: 10),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: languageWidgets,
+//             ),
+//             const SizedBox(height: 10),
+//             const Text("Previous Role Held", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: roleWidgets,
+//             ),
+//             const SizedBox(height: 100),
+//             SizedBox(
+//               width: double.infinity,
+//               child: ElevatedButton(
+//                 onPressed: () {
+//                   // Process selectedLanguages and selectedRoles
+//                   const String userId = 'userId';
+//                   updateUserInfo(context, selectedLanguages, selectedRoles);
+//
+//                   // Navigate to the next screen
+//                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => UploadDocuments()));
+//                 },
+//                 child: const Text("Next"),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class CardWidget extends StatefulWidget {
+//   final String language;
+//   final Function(bool isSelected) onSelectionChanged;
+//
+//   const CardWidget({required this.language, required this.onSelectionChanged, Key? key})
+//       : super(key: key);
+//
+//   @override
+//   _CardWidgetState createState() => _CardWidgetState();
+// }
+//
+// class _CardWidgetState extends State<CardWidget> {
+//   bool isSelected = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: GestureDetector(
+//         onTap: () {
+//           setState(() {
+//             isSelected = !isSelected;
+//           });
+//           widget.onSelectionChanged(isSelected);
+//         },
+//         child: Container(
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(20.0),
+//             color: isSelected
+//                 ? const Color.fromARGB(255, 161, 139, 164)
+//                 : const Color.fromARGB(136, 252, 248, 252),
+//           ),
+//           child: Padding(
+//             padding: const EdgeInsets.all(10.0),
+//             child: Text(
+//               widget.language,
+//               style: TextStyle(
+//                 fontSize: 16.0,
+//                 color: isSelected ? Colors.white : Colors.black,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -213,7 +453,8 @@ class TechnicalProficiency extends StatelessWidget {
 class SelectableCard extends StatelessWidget {
   const SelectableCard({Key? key});
 
-  void updateUserInfo(BuildContext context, List<String> selectedLanguages, List<String> selectedRoles) async {
+  void updateUserInfo(
+      BuildContext context, List<String> selectedLanguages, List<String> selectedRoles) async {
     var userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
 
     try {
@@ -229,7 +470,6 @@ class SelectableCard extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     List<String> selectedLanguages = [];
@@ -237,12 +477,32 @@ class SelectableCard extends StatelessWidget {
 
     List<CardWidget> languageWidgets = [
       CardWidget(
-        language: 'Python',
+        language: 'DevOps',
         onSelectionChanged: (isSelected) {
           if (isSelected) {
-            selectedLanguages.add('Python');
+            selectedLanguages.add('DevOps');
           } else {
-            selectedLanguages.remove('Python');
+            selectedLanguages.remove('DevOps');
+          }
+        },
+      ),
+      CardWidget(
+        language: 'Java',
+        onSelectionChanged: (isSelected) {
+          if (isSelected) {
+            selectedLanguages.add('Java');
+          } else {
+            selectedLanguages.remove('Java');
+          }
+        },
+      ),
+      CardWidget(
+        language: 'Vue js',
+        onSelectionChanged: (isSelected) {
+          if (isSelected) {
+            selectedLanguages.add('Vue js');
+          } else {
+            selectedLanguages.remove('Vue js');
           }
         },
       ),
@@ -252,27 +512,17 @@ class SelectableCard extends StatelessWidget {
           if (isSelected) {
             selectedLanguages.add('Python');
           } else {
-            selectedLanguages.remove('Python');
+            selectedLanguages.remove('Vue js');
           }
         },
       ),
       CardWidget(
-        language: 'Python',
+        language: 'CyberSecurity',
         onSelectionChanged: (isSelected) {
           if (isSelected) {
-            selectedLanguages.add('Python');
+            selectedLanguages.add('CyberSecurity');
           } else {
-            selectedLanguages.remove('Python');
-          }
-        },
-      ),
-      CardWidget(
-        language: 'Python',
-        onSelectionChanged: (isSelected) {
-          if (isSelected) {
-            selectedLanguages.add('Python');
-          } else {
-            selectedLanguages.remove('Python');
+            selectedLanguages.remove('CyberSecurity');
           }
         },
       ),
@@ -291,37 +541,40 @@ class SelectableCard extends StatelessWidget {
         },
       ),
       CardWidget(
-        language: 'Learner',
+        language: 'Mentor',
         onSelectionChanged: (isSelected) {
           if (isSelected) {
-            selectedRoles.add('Learner');
+            selectedRoles.add('Mentor');
           } else {
-            selectedRoles.remove('Learner');
+            selectedRoles.remove('Mentor');
           }
         },
       ),
       CardWidget(
-        language: 'Learner',
+        language: 'Program Lead',
         onSelectionChanged: (isSelected) {
           if (isSelected) {
-            selectedRoles.add('Learner');
+            selectedRoles.add('Program Lead');
           } else {
-            selectedRoles.remove('Learner');
+            selectedRoles.remove('Program Lead');
           }
         },
       ),
       CardWidget(
-        language: 'Learner',
+        language: 'Mentor Manager',
         onSelectionChanged: (isSelected) {
           if (isSelected) {
-            selectedRoles.add('Learner');
+            selectedRoles.add('Mentor Manager');
           } else {
-            selectedRoles.remove('Learner');
+            selectedRoles.remove('Mentor Manager');
           }
         },
       ),
       // Add other roleWidgets with similar changes
     ];
+
+
+
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(136, 252, 248, 252),
@@ -335,15 +588,27 @@ class SelectableCard extends StatelessWidget {
             const SizedBox(height: 30),
             const Text("Technical Proficiency", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: languageWidgets,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: languageWidgets,
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             const Text("Previous Role Held", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: roleWidgets,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: roleWidgets,
+                ),
+              ],
             ),
             const SizedBox(height: 100),
             SizedBox(
@@ -357,7 +622,20 @@ class SelectableCard extends StatelessWidget {
                   // Navigate to the next screen
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => UploadDocuments()));
                 },
-                child: const Text("Next"),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    const EdgeInsets.symmetric(vertical: 20),
+                  ),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                  ),
+                ),
+                child: const Center(
+                  child: Text("Next"),
+                ),
               ),
             ),
           ],
@@ -396,7 +674,7 @@ class _CardWidgetState extends State<CardWidget> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
             color: isSelected
-                ? const Color.fromARGB(255, 161, 139, 164)
+                ? Colors.teal // Use teal color for selected items
                 : const Color.fromARGB(136, 252, 248, 252),
           ),
           child: Padding(
@@ -414,7 +692,6 @@ class _CardWidgetState extends State<CardWidget> {
     );
   }
 }
-
 
 
 

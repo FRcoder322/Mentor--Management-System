@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -29,15 +31,12 @@ class UserDataProvider extends ChangeNotifier {
 
   UserData get userData => _userData;
 
-  void getUserDataById(String userId) {
-    // Here you should implement the logic to fetch user data from your data source
-    // For example, you might use Firebase Firestore or any other data source
-    // Replace the following lines with your actual implementation
 
-    // Assuming you have a Firestore collection 'Users'
+  void getUserDataById(String userId) {
+
+
     FirebaseFirestore.instance.collection('Mentors').doc(userId).get().then((doc) {
       if (doc.exists) {
-        // Update the _userData with the fetched data
         _userData = UserData(
           userId: doc.id,
           firstName: doc['firstName'],
@@ -59,7 +58,6 @@ class UserDataProvider extends ChangeNotifier {
           linkedinUsername:doc ['linkedinUsername'],
         );
 
-        // Notify listeners to update the UI
         notifyListeners();
       } else {
         print('Document does not exist');
@@ -69,3 +67,6 @@ class UserDataProvider extends ChangeNotifier {
     });
   }
 }
+
+final _userDataController = StreamController<UserData>();
+Stream<UserData> get userDataStream => _userDataController.stream;
