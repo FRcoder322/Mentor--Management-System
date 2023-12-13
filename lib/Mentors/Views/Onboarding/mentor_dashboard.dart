@@ -423,14 +423,17 @@ class MentorDashboard extends StatelessWidget {
           backgroundColor: Colors.teal,
           title: Row(
             children: [
-              Column(
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text("Hi, Sandy"),
-                  ),
-                  const Text("Admin"),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("Hi, Sandy"),
+                    ),
+                    const Text("Admin"),
+                  ],
+                ),
               ),
               const Spacer(),
               IconButton(
@@ -443,14 +446,15 @@ class MentorDashboard extends StatelessWidget {
               ),
             ],
           ),
-          leading: const Padding(
-            padding: EdgeInsets.all(16.0),
+          leading: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: CircleAvatar(
-              radius: 10,
+              radius: 40,
               backgroundImage: NetworkImage(''),
             ),
           ),
         ),
+
         body: Center(
           child: ListView(
             padding: const EdgeInsets.all(16),

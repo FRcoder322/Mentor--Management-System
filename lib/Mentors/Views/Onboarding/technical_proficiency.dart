@@ -433,14 +433,23 @@ class TechnicalProficiency extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: const Text("Mentor"),
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Mentor",
+                style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(width: 16), // Adjust the width as needed
+            ],
+          ),
         ),
         body: const Center(
           child: SelectableCard(),
@@ -623,19 +632,9 @@ class SelectableCard extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => UploadDocuments()));
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                    const EdgeInsets.symmetric(vertical: 20),
-                  ),
-                  shape: MaterialStateProperty.all<OutlinedBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 180, 180)),
                 ),
-                child: const Center(
-                  child: Text("Next"),
-                ),
+                child: const Text("Next", style: TextStyle(color: Colors.white)),
               ),
             ),
           ],

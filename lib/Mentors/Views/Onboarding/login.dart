@@ -186,7 +186,7 @@ import 'package:flutter/material.dart';
 import 'program_profile.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -202,17 +202,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         toolbarHeight: 100,
         backgroundColor: const Color.fromARGB(255, 0, 180, 180),
-        title: Row(
-          children: [
-            // IconButton(
-            //   icon: const Icon(Icons.arrow_back),
-            //   onPressed: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
-            const Text("Login"),
-          ],
-        ),
+        title: const Text("Login"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -278,23 +268,20 @@ class _LoginPageState extends State<LoginPage> {
                 );
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.symmetric(vertical: 20),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 0, 180, 180),
                 ),
-                shape: MaterialStateProperty.all<OutlinedBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.all(16.0),
+                ),
+                minimumSize: MaterialStateProperty.all<Size>(
+                  Size(double.infinity, 0),
                 ),
               ),
-              child: const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'Login',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
-                ),
+              child: const Text(
+                'Login',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
           ],

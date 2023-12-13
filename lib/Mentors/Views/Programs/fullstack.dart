@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../More/Reports/Programs-Report/program_reports.dart';
 import '../More/Reports/Programs-Report/reports_page.dart';
 
-class CyberSecurity extends StatelessWidget {
-  const CyberSecurity({super.key});
+class Fullstack extends StatelessWidget {
+  const Fullstack({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CyberSecurity extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: const Text('CyberSecurity course'),
+          title: const Text('Fullstack course'),
         ),
         body: const Center(
           child: CourseContent(),
@@ -46,7 +46,7 @@ class CourseContent extends StatelessWidget {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "CyberSecurity",
+                "Fullstack",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
             ),

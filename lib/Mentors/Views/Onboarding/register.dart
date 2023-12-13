@@ -47,9 +47,9 @@ class _RegistrationState extends State<Registration> {
               Navigator.pop(context);
             },
           ),
-          title: const Text('Mentor'),
+          title: const Text('Mentor',textAlign: TextAlign.left,style: TextStyle(color:Colors.white,fontSize: 24),),
         ),
-        body: RegistrationContent(username: widget.username),
+        body: RegistrationContent(username: widget.username, onRegister: (String email) {  },),
       ),
     );
   }
@@ -57,8 +57,9 @@ class _RegistrationState extends State<Registration> {
 
 class RegistrationContent extends StatefulWidget {
   final String username;
+  final Function(String email) onRegister;
 
-  const RegistrationContent({Key? key, required this.username}) : super(key: key);
+  const RegistrationContent({Key? key, required this.username, required this.onRegister}) : super(key: key);
 
   @override
   State<RegistrationContent> createState() => _RegistrationContentState();
@@ -66,11 +67,12 @@ class RegistrationContent extends StatefulWidget {
 
 class _RegistrationContentState extends State<RegistrationContent> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController emailController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
@@ -101,7 +103,7 @@ class _RegistrationContentState extends State<RegistrationContent> {
         },
       );
 
-      // Navigate to UserProfile form after successful registration
+      // Navigate to Profile page after successful registration
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => ProgramProfile(userId: userCredential.user!.uid),
@@ -112,25 +114,12 @@ class _RegistrationContentState extends State<RegistrationContent> {
       print('Error during registration: ${e.message}');
     }
   }
-
-  Future<void> _checkEmailVerification() async {
-    User? user = _auth.currentUser;
-
-    if (user != null && !user.emailVerified) {
-      // Show a message or navigate to a screen indicating that email verification is required
-      print('Email not verified. Please verify your email.');
-    } else {
-      // Continue to the next screen or perform the desired action
-      print('Email verified. Continue with the app.');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(136, 252, 248, 252),
       body: ListView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         children: [
           const SizedBox(height: 14),
           const Text(
@@ -153,46 +142,48 @@ class _RegistrationContentState extends State<RegistrationContent> {
           const Text("Last name"),
           TextFormField(
             controller: lastNameController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Enter your last name",
             ),
           ),
-          SizedBox(height: 14),
-          Text("Email address"),
+          const SizedBox(height: 14),
+          const Text("Email address"),
           TextFormField(
             controller: emailController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Enter your email address",
             ),
           ),
-          SizedBox(height: 14),
-          Text("Password"),
+          const SizedBox(height: 14),
+          const Text("Password"),
           TextFormField(
             controller: passwordController,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Enter your password",
             ),
           ),
-          SizedBox(height: 14),
-          Text("Confirm Password"),
+          const SizedBox(height: 14),
+          const Text("Confirm Password"),
           TextFormField(
             controller: confirmPasswordController,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'Confirm your password',
             ),
           ),
-          SizedBox(height: 14),
+          const SizedBox(height: 14),
           TextButton(
             onPressed: () async {
+              String email = emailController.text;
+              Navigator.pop(context, email);
               await _registerAndVerifyEmail();
-              // Check if email is verified before proceeding
-              await _checkEmailVerification();
+              widget.onRegister(email);
+
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
@@ -205,35 +196,35 @@ class _RegistrationContentState extends State<RegistrationContent> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           const Text(
-            ".............................OR."
-                "................................",
+                "................OR."
+                "................",
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           TextButton(
             onPressed: () {},
             style: OutlinedButton.styleFrom(
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: const Text("Sign Up with Google"),
           ),
-          SizedBox(
-            height: 16,
+          const SizedBox(height: 16,
           ),
           Row(
             children: [
               const Text("Already have an account ?"),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
                 child: const Text(
                   "Login",
-                  style: TextStyle(color: Colors.black26),
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ],

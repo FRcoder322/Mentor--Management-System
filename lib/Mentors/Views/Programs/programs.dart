@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mms_project/Mentors/Views/Programs/fullstack.dart';
 
 import '../More/Reports/Programs-Report/program_reports.dart';
 import '../More/Reports/Programs-Report/program_view_report.dart';
@@ -15,45 +16,41 @@ class Programs extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
-          leading: Row(
+          backgroundColor: Colors.teal,
+          title: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: ClipOval(
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage('https://example.com/profile.jpg'),
-                  ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("Hi, Sandy"),
+                    ),
+                    const Text("Admin"),
+                  ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Hi Sandy', style: TextStyle(color: Colors.white)),
-                  ),
-                  const Text("Admin"),
-                ],
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {},
               ),
             ],
           ),
-          actions: const [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(Icons.search),
-                SizedBox(width: 14),
-                Icon(Icons.notifications),
-              ],
+          leading: const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: CircleAvatar(
+              radius: 40,
+              backgroundImage: NetworkImage(''),
             ),
-          ],
+          ),
         ),
+
         body:  const ProgramContents(title: '',),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.black,
@@ -182,7 +179,7 @@ class _ProgramContentsState extends State<ProgramContents> {
         // Handle navigation to the next page here
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const CyberSecurity(title: '',)),
+          MaterialPageRoute(builder: (context) => const Fullstack()),
         );
       },
       child: Card(

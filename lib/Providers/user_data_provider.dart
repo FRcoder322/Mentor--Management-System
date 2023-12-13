@@ -1,11 +1,10 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../Mentors/Model/mentor.dart';
-
-
 
 class UserDataProvider extends ChangeNotifier {
   UserData _userData = UserData(
@@ -27,14 +26,12 @@ class UserDataProvider extends ChangeNotifier {
     username: '',
     githubUsername: '',
     linkedinUsername: '',
+    avatarBytes: Uint8List.fromList([]),
   );
 
   UserData get userData => _userData;
 
-
   void getUserDataById(String userId) {
-
-
     FirebaseFirestore.instance.collection('Mentors').doc(userId).get().then((doc) {
       if (doc.exists) {
         _userData = UserData(
@@ -45,17 +42,18 @@ class UserDataProvider extends ChangeNotifier {
           country: doc['country'],
           city: doc['city'],
           avatarUrl: doc['avatar'],
-          displayName: doc ['Name'],
-          programInterest:doc ['programInterest'],
-          yearOfExperience:doc ['yearOfExperience'],
+          displayName: doc['Name'],
+          programInterest: doc['programInterest'],
+          yearOfExperience: doc['yearOfExperience'],
           mentorBefore: doc['mentorBefore'],
-          technicalProficiency:doc ['technicalProficiency'],
-          previousRoleHeld:doc ['previousRoleHeld'],
-          documents:doc ['documents'],
-          socialMedia:doc ['socialMedia'],
-          username:doc ['username'],
-          githubUsername:doc ['githubUsername'],
-          linkedinUsername:doc ['linkedinUsername'],
+          technicalProficiency: doc['technicalProficiency'],
+          previousRoleHeld: doc['previousRoleHeld'],
+          documents: doc['documents'],
+          socialMedia: doc['socialMedia'],
+          username: doc['username'],
+          githubUsername: doc['githubUsername'],
+          linkedinUsername: doc['linkedinUsername'],
+          avatarBytes: doc['avatarBytes'] ?? Uint8List.fromList([]),
         );
 
         notifyListeners();

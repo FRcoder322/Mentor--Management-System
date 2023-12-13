@@ -18,45 +18,41 @@ class _MentorTasksState extends State<MentorTasks> {
       debugShowCheckedModeBanner: false,
       color: Colors.teal,
       home: Scaffold(
-        appBar: AppBar(
+        appBar:AppBar(
           toolbarHeight: 100,
           backgroundColor: Colors.teal,
-          leading:    Row(
-            crossAxisAlignment:CrossAxisAlignment.start,
+          title: Row(
             children: [
-
-              const Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 16),
-              child: CircleAvatar(
-                radius: 40,
-                backgroundImage:NetworkImage("url"),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("Hi, Sandy"),
+                    ),
+                    const Text("Admin"),
+                  ],
+                ),
               ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {},
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ElevatedButton(onPressed: (){
-
-                  }, child: const Text("Hi Sandy",style: TextStyle(color: Colors.white),)),
-                  const Text("Admin"),
-                ],
-              )
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {},
+              ),
             ],
-          ) ,
-          actions: const [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(Icons.search),
-                  SizedBox(width: 14),
-                  Icon(Icons.notifications),
-                ],
-              ),
+          ),
+          leading: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: CircleAvatar(
+              radius: 40,
+              backgroundImage: NetworkImage(''),
             ),
-          ],
+          ),
         ),
         body: const TasksContent(title: '',),
         bottomNavigationBar: BottomNavigationBar(

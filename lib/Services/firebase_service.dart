@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../Providers/user_data_provider.dart';
 
 class FirebaseServices {
-  Future<void> updateUserInfo(String userId, List<String> documents) async {
+  Future<void> updateUserInfo(String userId, List<String> documents, String github, String linkedin) async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
 

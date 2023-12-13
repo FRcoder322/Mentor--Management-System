@@ -474,11 +474,10 @@
 //   }
 // }
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Providers/user_data_provider.dart';
@@ -490,6 +489,12 @@ class UploadDocuments extends StatelessWidget {
 
   final GlobalKey<_DocumentsContentState> _documentsContentKey =
   GlobalKey<_DocumentsContentState>();
+
+  void _handleSubmission() {
+    // Perform actions related to application submission here
+    print("Application submitted");
+    // You can also call the function to update user info here if needed
+  }
 
   Future<void> _uploadFiles() async {
     FilePickerResult? result =
@@ -519,18 +524,28 @@ class UploadDocuments extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
+          backgroundColor: Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: const Text("Mentor"),
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Mentor",
+                style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(width: 16),
+            ],
+          ),
         ),
         body: DocumentsContent(
           key: _documentsContentKey,
           uploadFiles: _uploadFiles,
+          handleSubmission: _handleSubmission,
         ),
       ),
     );
@@ -541,9 +556,11 @@ class DocumentsContent extends StatefulWidget {
   const DocumentsContent({
     Key? key,
     required this.uploadFiles,
+    required this.handleSubmission,
   }) : super(key: key);
 
   final VoidCallback uploadFiles;
+  final VoidCallback handleSubmission;
 
   @override
   _DocumentsContentState createState() => _DocumentsContentState();
@@ -552,13 +569,26 @@ class DocumentsContent extends StatefulWidget {
 class _DocumentsContentState extends State<DocumentsContent> {
   late final FirebaseServices firebaseServices;
 
-
   List<PlatformFile> selectedFiles = [];
+  late final TextEditingController githubController;
+  late final TextEditingController linkedinController;
 
   @override
   void initState() {
     super.initState();
     firebaseServices = Provider.of<FirebaseServices>(context, listen: false);
+
+    // Initialize controllers for GitHub and LinkedIn text fields
+    githubController = TextEditingController();
+    linkedinController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // Dispose of controllers to prevent memory leaks
+    githubController.dispose();
+    linkedinController.dispose();
+    super.dispose();
   }
 
   void addFiles(List<PlatformFile> newFiles) {
@@ -567,21 +597,21 @@ class _DocumentsContentState extends State<DocumentsContent> {
     });
   }
 
-  Future<void> updateUserInfo(BuildContext context, List<String> documents) async {
+  Future<void> updateUserInfo(
+      BuildContext context, List<String> documents, String github, String linkedin) async {
     var userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
 
     try {
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
-        await firebaseServices.updateUserInfo(user.uid , documents);
+        await firebaseServices.updateUserInfo(user.uid, documents, github, linkedin);
         print('Data saved to Firestore successfully!');
       } else {
         print('User is null');
       }
     } catch (e) {
       print('Error saving data to Firestore: $e');
-      // Provide feedback to the user, e.g., show an error dialog
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -674,51 +704,88 @@ class _DocumentsContentState extends State<DocumentsContent> {
           const SizedBox(height: 20),
           const Text("Socials",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const Row(
+          Row(
             children: [
               Flexible(
                 child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: "username"),
+                  controller: githubController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "GitHub username",
+                  ),
                 ),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Flexible(
                 child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "@github account"),
+                  controller: linkedinController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "@github.com",
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          const Row(
+          Row(
             children: [
               Flexible(
                 child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: "username"),
+                  controller: githubController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Linkedin username",
+                  ),
                 ),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Flexible(
                 child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "@linkedin username"),
+                  controller: linkedinController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "@linkein.com",
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Flexible(
+                child: TextField(
+                  controller: githubController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "website",
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: TextField(
+                  controller: linkedinController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "website",
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () async {
-              var firebaseServices =
-              Provider.of<FirebaseServices>(context, listen: false);
-
               await updateUserInfo(
-                  context, selectedFiles.map((file) => file.name).toList());
+                context,
+                selectedFiles.map((file) => file.name).toList(),
+                githubController.text.trim(),
+                linkedinController.text.trim(),
+              );
+
+              widget.handleSubmission(); // Call the callback
 
               showDialog(
                 context: context,
@@ -727,22 +794,12 @@ class _DocumentsContentState extends State<DocumentsContent> {
                 },
               );
             },
-               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-              const EdgeInsets.symmetric(vertical: 20),
-               ),
-                   shape: MaterialStateProperty.all<OutlinedBorder>(
-                         RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                  ),
-                      ),
-                    ),
-                      child: const Center(
-                         child: Text("Next"),
-                      ),
+            style: ButtonStyle(
+              backgroundColor:
+              MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 180, 180)),
+            ),
+            child: const Text("Next", style: TextStyle(color: Colors.white)),
           ),
-
         ],
       ),
     );
