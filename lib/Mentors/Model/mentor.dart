@@ -17,9 +17,11 @@ class UserData {
   String documents;
   String socialMedia;
   String username;
+  String website;
   String githubUsername;
   String linkedinUsername;
   Uint8List avatarBytes;
+
 
   UserData({
     required this.userId,
@@ -40,6 +42,7 @@ class UserData {
     required this.username,
     required this.githubUsername,
     required this.linkedinUsername,
+    required this.website,
     required this.avatarBytes,
   });
 }

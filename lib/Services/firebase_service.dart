@@ -2,12 +2,13 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
-import '../Providers/user_data_provider.dart';
-
 class FirebaseServices {
-  Future<void> updateUserInfo(String userId, List<String> documents, String github, String linkedin) async {
+  Future<void> updateUserInfo(String userId,
+      List<String> documents,
+      String githubUsername,
+      String linkedinUsername,
+      String website,
+  ) async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
 
@@ -16,7 +17,9 @@ class FirebaseServices {
         DocumentSnapshot snapshot = await FirebaseFirestore.instance
             .collection('Mentors')
             .doc(userId)
-            .get();
+            .get(
+
+        );
 
         if (snapshot.exists) {
           // Document exists, perform update
@@ -25,6 +28,10 @@ class FirebaseServices {
               .doc(userId)
               .update({
             'documents': documents,
+            'github':githubUsername,
+            'linkedin':linkedinUsername,
+            'website':website,
+
           });
         } else {
           // Document does not exist, create it
@@ -33,6 +40,9 @@ class FirebaseServices {
               .doc(userId)
               .set({
             'documents': documents,
+            'github':githubUsername,
+            'linkedin':linkedinUsername,
+            'website':website,
           }, SetOptions(merge: true));
         }
       } else {

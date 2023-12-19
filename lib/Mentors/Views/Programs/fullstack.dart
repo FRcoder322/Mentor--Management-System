@@ -14,14 +14,19 @@ class Fullstack extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Color.fromARGB(255, 0, 180, 180),
+          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: const Text('Fullstack course'),
+          title: const Row(
+            children: [
+              SizedBox(width: 16),
+              Text('Fullstack course',style: TextStyle(color: Colors.white),),
+            ],
+          ),
         ),
         body: const Center(
           child: CourseContent(),
@@ -90,7 +95,19 @@ class CourseContent extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text("Request to join program", style: TextStyle(fontSize: 14)),
+
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromARGB(255, 0, 180, 180),
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    EdgeInsets.all(16.0),
+                  ),
+                  minimumSize: MaterialStateProperty.all<Size>(
+                    Size(double.infinity, 0),
+                  ),
+                ),
+                child: const Text("Request to join program", style: TextStyle(fontSize: 14,color: Colors.white)),
               ),
             ),
           ],

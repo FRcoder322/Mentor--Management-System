@@ -749,14 +749,14 @@ class _ApplicationStatus extends State<ApplicationStatus> {
               ),
             ),
           );
-        } else if (snapshot.hasError) {
-          return const MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: Text('Error loading data'),
-              ),
-            ),
-          );
+        // } else if (snapshot.hasError) {
+        //   return const MaterialApp(
+        //     home: Scaffold(
+        //       body: Center(
+        //         child: Text('Error loading data'),
+        //       ),
+        //     ),
+        //   );
         } else {
           var userData = snapshot.data;
           if (userData != null) {
@@ -765,6 +765,7 @@ class _ApplicationStatus extends State<ApplicationStatus> {
               home: Scaffold(
                 appBar: AppBar(
                   toolbarHeight: 100,
+
                   backgroundColor: const Color.fromARGB(255, 0, 180, 180),
                   title: Row(
                     children: [
@@ -788,7 +789,7 @@ class _ApplicationStatus extends State<ApplicationStatus> {
                       radius: 80,
                       backgroundImage: userData['profileImageUrl'] != null
                           ? NetworkImage(userData['profileImageUrl']!)
-                          : const AssetImage('profileImageUrl') as ImageProvider<Object>,
+                          : AssetImage('profileImageUrl') as ImageProvider<Object>,
                     ),
                   ),
                 ),
@@ -806,7 +807,6 @@ class _ApplicationStatus extends State<ApplicationStatus> {
                         const SizedBox(height: 30),
                         buildStatusRow("Application Approved", _approvedChecked),
                         if (_approvedChecked && submissionDateTime != null)
-
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Row(
@@ -856,7 +856,7 @@ class _ApplicationStatus extends State<ApplicationStatus> {
                             ),
                           ),
                           child: const Text("Start your journey", style: TextStyle(color: Colors.white)),
-                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -931,7 +931,7 @@ class _ApplicationStatus extends State<ApplicationStatus> {
   }
 
   Future<Map<String, dynamic>> getUserData() async {
-    var userId = 'username';
+    var userId = widget.username;
 
     var userDoc = await FirebaseFirestore.instance.collection('Mentors').doc(userId).get();
 
@@ -957,4 +957,3 @@ class _ApplicationStatus extends State<ApplicationStatus> {
     }
   }
 }
-

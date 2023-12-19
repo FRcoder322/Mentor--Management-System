@@ -26,6 +26,7 @@ class UserDataProvider extends ChangeNotifier {
     username: '',
     githubUsername: '',
     linkedinUsername: '',
+    website:'',
     avatarBytes: Uint8List.fromList([]),
   );
 
@@ -54,6 +55,7 @@ class UserDataProvider extends ChangeNotifier {
           githubUsername: doc['githubUsername'],
           linkedinUsername: doc['linkedinUsername'],
           avatarBytes: doc['avatarBytes'] ?? Uint8List.fromList([]),
+          website: doc["website"],
         );
 
         notifyListeners();

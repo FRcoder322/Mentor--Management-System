@@ -8,6 +8,7 @@ import 'package:mms_project/Mentors/Views/Onboarding/mentor_onboard.dart';
 
 
 
+import '../../../Messages/messages.dart';
 import '../../../Onboarding/mentor_dashboard.dart';
 import '../../../Onboarding/register.dart';
 import '../../../Programs/programs.dart';
@@ -29,34 +30,39 @@ class _ProgramReportsState extends State<ProgramReports> {
       home:Scaffold(
         appBar:AppBar(
           toolbarHeight: 100,
-          backgroundColor: Colors.teal,
+          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
           title: Row(
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("Hi, Sandy"),
-                    ),
-                    const Text("Admin"),
-                  ],
+              const Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Hi, Sandy',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.white),
+                      ),
+                      Text(
+                        'Admin',
+                        style: TextStyle(fontSize: 14,color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Spacer(),
               IconButton(
-                icon: const Icon(Icons.search),
+                icon: const Icon(Icons.search,color: Colors.white,size: 30,),
                 onPressed: () {},
               ),
               IconButton(
-                icon: const Icon(Icons.notifications),
+                icon: const Icon(Icons.notifications,color: Colors.white,size: 30,),
                 onPressed: () {},
               ),
             ],
           ),
           leading: const Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0), // Adjusted padding for CircleAvatar
             child: CircleAvatar(
               radius: 40,
               backgroundImage: NetworkImage(''),
@@ -107,7 +113,7 @@ class _ProgramReportsState extends State<ProgramReports> {
                 break;
               case 3:
               // Navigate to Messages page
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => MessagesPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => MessagesPage()));
                 break;
               case 4:
               // Navigate to More page
@@ -183,7 +189,7 @@ class _ProgramReportsContentState extends State<ProgramReportsContent> {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const MyCertificatesPage()));
         break;
       case "Log Out":
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignOutButton()));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => const SignOutButton()));
         break;
       // Add cases for other reports as needed
        default:
@@ -486,21 +492,22 @@ class _MyCertificatesPageState extends State<MyCertificatesPage> {
   }
 }
 
-class SignOutButton extends StatelessWidget {
-  const SignOutButton({Key? key}) : super(key: key);
+// class SignOutButton extends StatelessWidget {
+//   const SignOutButton({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ElevatedButton(
+//       onPressed: () async {
+//         await FirebaseAuth.instance.signOut();
+//         Navigator.pushAndRemoveUntil(
+//           context,
+//           MaterialPageRoute(builder: (context) => const MentorOnboard()),
+//               (route) => false,
+//         );
+//       },
+//       child: const Text('Sign Out'),
+//     );
+//   }
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
-        await FirebaseAuth.instance.signOut();
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const MentorOnboard()),
-              (route) => false,
-        );
-      },
-      child: const Text('Sign Out'),
-    );
-  }
-}

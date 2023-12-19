@@ -98,7 +98,7 @@ class _ReportsPageState extends State<ReportsPage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        title: const Text('Reports'),
+        title: const Text('Reports',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.teal,
       ),
       body: Padding(

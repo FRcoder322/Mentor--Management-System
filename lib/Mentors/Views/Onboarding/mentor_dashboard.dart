@@ -403,13 +403,17 @@
 // // }
 import 'package:flutter/material.dart';
 
+import '../Messages/messages.dart';
 import '../More/Reports/Programs-Report/program_reports.dart';
 import '../Programs/programs.dart';
 import '../Tasks/mentor_tasks.dart';
 
 class MentorDashboard extends StatelessWidget {
+  final username;
 
-  const MentorDashboard({Key? key,}) : super(key: key);
+  const MentorDashboard({Key? key, this.username,}) : super(key: key);
+
+
 
 
 
@@ -420,41 +424,45 @@ class MentorDashboard extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: Colors.teal,
+          backgroundColor: const Color.fromARGB(255, 0, 180, 180),
           title: Row(
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("Hi, Sandy"),
-                    ),
-                    const Text("Admin"),
-                  ],
+              const Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Hi, Sandy',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.white),
+                      ),
+                      Text(
+                        'Admin',
+                        style: TextStyle(fontSize: 14,color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Spacer(),
               IconButton(
-                icon: const Icon(Icons.search),
+                icon: const Icon(Icons.search,color: Colors.white,size: 30,),
                 onPressed: () {},
               ),
               IconButton(
-                icon: const Icon(Icons.notifications),
+                icon: const Icon(Icons.notifications,color: Colors.white,size: 30,),
                 onPressed: () {},
               ),
             ],
           ),
-          leading: Padding(
-            padding: const EdgeInsets.all(16.0),
+          leading: const Padding(
+            padding: EdgeInsets.all(16.0), // Adjusted padding for CircleAvatar
             child: CircleAvatar(
               radius: 40,
               backgroundImage: NetworkImage(''),
             ),
           ),
         ),
-
         body: Center(
           child: ListView(
             padding: const EdgeInsets.all(16),
@@ -642,7 +650,7 @@ class MentorDashboard extends StatelessWidget {
                 break;
               case 3:
               // Navigate to Messages page
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => MessagesPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MessagesPage()));
                 break;
               case 4:
               // Navigate to More page
@@ -655,6 +663,12 @@ class MentorDashboard extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
 
 
 

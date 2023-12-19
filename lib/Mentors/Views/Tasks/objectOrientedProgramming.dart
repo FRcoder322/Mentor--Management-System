@@ -73,11 +73,41 @@ class CourseContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 200),
-           ElevatedButton(onPressed: (){}, child: const Text(" Mark as Complete"
+           ElevatedButton(onPressed: (){
 
-           )),
+           },
+             style: ButtonStyle(
+               backgroundColor: MaterialStateProperty.all<Color>(
+                 const Color.fromARGB(255, 0, 180, 180),
+               ),
+               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                 EdgeInsets.all(16.0),
+               ),
+               minimumSize: MaterialStateProperty.all<Size>(
+                 Size(double.infinity, 0),
+               ),
+             ),child: const Text(" Mark as Complete",style: TextStyle(color: Colors.white),
+
+           ),
+
+           ),
             const SizedBox(height: 16,),
-            TextButton(onPressed: (){}, child: const Text("Submit Report"))
+            TextButton(onPressed: (){
+
+
+            },
+
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                const Color.fromARGB(255, 0, 180, 180),
+      ),
+      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+        EdgeInsets.all(16.0),
+      ),
+      minimumSize: MaterialStateProperty.all<Size>(
+        Size(double.infinity, 0),
+      ),
+    ), child: const Text("Submit Report",style: TextStyle(color: Colors.white),))
           ],
         ),
       ),

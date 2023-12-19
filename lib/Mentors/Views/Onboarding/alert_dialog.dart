@@ -10,7 +10,7 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Registration Successful'),
-      content: Text('Welcome, $username!'),
+      content: Text('Check your email , $username!'),
       actions: [
         TextButton(
           onPressed: () {
@@ -46,23 +46,26 @@ class CustomAlertDialog extends StatelessWidget {
  }
 
 class DocumentsAlertDialog extends StatelessWidget {
-
-  const DocumentsAlertDialog({super.key});
+  const DocumentsAlertDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Success !'),
-      content: const Text('Your documents has been successfully  submitted.'),
+      content: const Text('Your documents have been successfully submitted.'),
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const ApplicationStatus(username: '',)) );
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const ApplicationStatus(username: 'yourUsernameHere'),
+              ),
+            );
           },
-          child: const Text('OK',style: TextStyle(color: Colors.black),),
+          child: const Text('OK', style: TextStyle(color: Colors.black)),
         ),
-
       ],
     );
   }
 }
+
