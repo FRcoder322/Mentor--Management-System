@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:mms_project/Mentors/Views/Onboarding/register.dart';
 
+import '../../../Mentor Manager/Onboarding/register.dart';
+
 class SelectOption extends StatefulWidget {
   const SelectOption({Key? key, required String userId}) : super(key: key);
 
@@ -141,7 +143,8 @@ class _SelectOptionState extends State<SelectOption> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Icon(Icons.person, color: Color.fromARGB(255, 0, 180, 180), size: 60),
-                    const Column(
+                    const SizedBox(width: 16),  // Added SizedBox for spacing
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Mentor Manager", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -149,13 +152,16 @@ class _SelectOptionState extends State<SelectOption> {
                         Text("across all learning tracks"),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(width: 16),  // Added SizedBox for spacing
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterPage()));
+                      },
                       child: const Text('>', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
+
               )
             ],
           ),
