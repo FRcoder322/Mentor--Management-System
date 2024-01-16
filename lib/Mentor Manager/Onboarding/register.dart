@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Mentors/Views/Onboarding/login.dart';
+import 'loginpage.dart';
 
 
 
@@ -47,7 +48,7 @@ class _MentorManagerRegistrationState  extends State<MentorManagerRegistration>{
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Color.fromARGB(136, 252, 248, 252),
+      backgroundColor: const Color.fromARGB(136, 252, 248, 252),
       body: ListView(
         padding: const EdgeInsets.all(20.0),
         children: [
@@ -145,7 +146,7 @@ class _MentorManagerRegistrationState  extends State<MentorManagerRegistration>{
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const LoginPage()));
+                      MaterialPageRoute(builder: (context) => const LoginPageManager()));
                 },
                 child: const Text(
                   "Login",

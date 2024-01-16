@@ -1,46 +1,14 @@
-
 import 'package:flutter/material.dart';
+import 'package:mms_project/Mentor%20Manager/Onboarding/managerProfile.dart';
 
-class MentorOnboard extends StatelessWidget {
-  const MentorOnboard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mentor Onboard"),
-      ),
-      body: const Center(
-        child: Text("Welcome to Mentor Onboard"),
-      ),
-    );
-  }
-}
-
-class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Forgot Password"),
-      ),
-      body: const Center(
-        child: Text("Reset your password here"),
-      ),
-    );
-  }
-}
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPageManager extends StatefulWidget {
+  const LoginPageManager({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPageManager> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -51,14 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: const Color.fromARGB(255, 0, 180, 180),
-        title: const Text(
-          "Login",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -74,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 16),
             const Text(
-              "Mentor Management System",
+              "Sign in to continue",
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -112,15 +72,13 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
-                // Implement login logic here
+
                 String email = emailController.text;
                 String password = passwordController.text;
-
-                // Dummy check for demonstration (replace with actual authentication logic)
                 if (email == dummyEmail && password == dummyPassword) {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const MentorOnboard()),
+                    MaterialPageRoute(builder: (context) => const ManagerProfile()),
                   );
                 } else {
                   // Show an error message or handle authentication failure
@@ -148,16 +106,31 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 10),
             TextButton(
               onPressed: () {
-                // Navigate to the Forgot Password page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
-                );
+                // // Navigate to the Forgot Password page
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => ()),
+                // );
               },
               child: const Text(
                 'Forgot Password?',
                 style: TextStyle(color: Colors.teal),
               ),
+            ),
+
+
+            const SizedBox(height: 20,),
+            TextButton(onPressed: (){}, child: const Text(
+              'Sign in with Google',
+              style: TextStyle(color: Colors.grey),
+            )),
+            const SizedBox(height: 5,),
+            const Row(
+              children: [
+                Text("New user?"),
+                Text('Sign up'),
+
+              ],
             ),
           ],
         ),

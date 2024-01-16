@@ -72,6 +72,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  assets:
+    - lib/Mentor Manager/Onboarding/
+
 assets:
       - images/splash2.png
       - profileImageUrl
